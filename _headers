@@ -1,0 +1,11 @@
+/admin.html
+  X-Robots-Tag: noindex, nofollow
+/admin-voice-actors.html
+  X-Robots-Tag: noindex, nofollow
+/admission.html
+  X-Robots-Tag: noindex
+/media/*
+  Cache-Control: public, max-age=604800
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

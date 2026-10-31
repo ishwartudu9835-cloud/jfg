@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>Admission | Cowartu</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32.png"><link rel="apple-touch-icon" href="/media/apple-touch-icon.png"><meta name="theme-color" content="#10223d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: single centered column, sticky step rail on top, one working card per step, modal for terms */
+:root{
+  --bg:#fbf8f2; --surface:#ffffff; --raise:#fff4e2; --ink:#14253f; --mute:#586478; --line:#e9e2d5;
+  --accent:#f0a02b; --accent-ink:#10223d; --teal:#1c3557; --teal-soft:#e7edf6; --err:#c0392b; --ok:#1e8e5a;
+  --shadow:0 1px 2px rgba(60,30,10,.06),0 8px 24px rgba(60,30,10,.07);
+  --display:"Montserrat",system-ui,sans-serif;
+  --body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1829; --surface:#15243a; --raise:#2a2a24; --ink:#f3efe6; --mute:#a5b0c2; --line:#243650;
+  --accent:#ffc15e; --accent-ink:#10223d; --teal:#9fc0ec; --teal-soft:#1a2b45; --err:#ff8a7a; --ok:#5fd39b;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1829; --surface:#15243a; --raise:#2a2a24; --ink:#f3efe6; --mute:#a5b0c2; --line:#243650;
+  --accent:#ffc15e; --accent-ink:#10223d; --teal:#9fc0ec; --teal-soft:#1a2b45; --err:#ff8a7a; --ok:#5fd39b;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:620px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);padding:5px 12px;border-radius:99px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,6vw,2.5rem);line-height:1.08;margin:14px 0 6px;text-wrap:balance}
+h1 span{color:var(--accent)}
+.lede{color:var(--mute);margin:0 0 22px;max-width:52ch}
+.fee{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.fee div{flex:1 1 160px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.fee b{display:block;font-family:var(--display);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.fee small{color:var(--mute);font-size:.82rem;line-height:1.3;display:block}
+.fee .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--raise);color:var(--accent)}
+/* stepper */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 0 14px;margin-bottom:6px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;list-style:none;margin:0;padding:0}
+.steps li{display:flex;flex-direction:column;gap:7px;font-size:.8rem;font-weight:600;color:var(--mute)}
+.steps li::before{content:"";height:5px;border-radius:5px;background:var(--line);transition:background .3s}
+.steps li.done::before,.steps li.now::before{background:var(--teal)}
+.steps li.now{color:var(--ink)}
+.steps li span{display:flex;align-items:center;gap:6px}
+.steps li svg.i{width:15px;height:15px}
+@media (max-width:420px){.steps li span b{display:none}.steps li span{justify-content:center}}
+/* card */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow)}
+h2{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:0 0 4px;text-wrap:balance}
+.hint{color:var(--mute);font-size:.94rem;margin:0 0 18px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
+.fields .full{grid-column:1/-1}
+@media (max-width:520px){.fields{grid-template-columns:1fr}}
+.fld label{display:block;font-weight:600;font-size:.9rem;margin:6px 0 6px}
+.inp{position:relative}
+.inp svg.i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--mute);width:18px;height:18px;pointer-events:none}
+.inp input{width:100%;font:inherit;color:inherit;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 12px 11px 40px;transition:border-color .2s,box-shadow .2s}
+.inp input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+.inp input[aria-invalid="true"]{border-color:var(--err)}
+.er{color:var(--err);font-size:.8rem;min-height:1.2em;margin-top:3px}
+/* options */
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:14px;align-items:center;width:100%;text-align:left;font:inherit;color:inherit;background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;transition:border-color .2s,background .2s,transform .15s}
+.opt:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.opt:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 40%,transparent);outline-offset:2px}
+.opt.on{border-color:var(--accent);background:var(--raise)}
+.opt .tile{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex:none;background:var(--raise);color:var(--accent)}
+.opt.on .tile{background:var(--accent);color:var(--accent-ink)}
+.opt .txt{flex:1;min-width:0}
+.opt .txt b{display:block;font-size:1.02rem}
+.opt .txt small{display:block;color:var(--mute);font-size:.88rem;font-variant-numeric:tabular-nums}
+.radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;transition:border-color .2s}
+.opt.on .radio{border-color:var(--accent)}
+.opt.on .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.av{width:56px;height:56px;border-radius:50%;flex:none;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,var(--teal),color-mix(in srgb,var(--teal) 60%,var(--accent)));color:#fff;font-family:var(--display);font-weight:800;font-size:1.3rem}
+.av img{width:100%;height:100%;object-fit:cover}
+.tmeta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.play{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:.84rem;font-weight:600;border:0;border-radius:99px;padding:6px 13px 6px 9px;cursor:pointer;background:var(--teal-soft);color:var(--teal)}
+.play svg.i{width:16px;height:16px}
+.play[disabled]{opacity:.6;cursor:default}
+.sico{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--mute);border:1px solid var(--line);text-decoration:none}
+.sico:hover{color:var(--accent);border-color:var(--accent)}
+.sico svg.i{width:16px;height:16px}
+/* review */
+.rev{display:grid;gap:12px}
+.rev section{border:1px solid var(--line);border-radius:14px;padding:4px 16px}
+.rev h3{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;letter-spacing:.07em;text-transform:uppercase;color:var(--teal);margin:12px 0 4px}
+.rev h3 button{font:inherit;font-size:.82rem;letter-spacing:0;text-transform:none;font-weight:600;color:var(--accent);background:none;border:0;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
+.rev h3 svg.i{width:14px;height:14px}
+.rev dl{margin:0 0 8px;display:grid;grid-template-columns:minmax(110px,38%) 1fr}
+.rev dt,.rev dd{padding:8px 0;border-top:1px solid var(--line);margin:0;min-width:0;overflow-wrap:anywhere}
+.rev dt{color:var(--mute);font-size:.92rem}
+.rev dd{font-weight:600}
+.rev dl > :nth-child(-n+2){border-top:0}
+/* nav */
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:22px}
+.btn{font:inherit;font-weight:700;border-radius:12px;padding:12px 20px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;border:0;transition:transform .15s,opacity .2s}
+.btn:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 40%,transparent);outline-offset:2px}
+.btn.p{background:var(--accent);color:var(--accent-ink);box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 35%,transparent)}
+.btn.p:hover:not(:disabled){transform:translateY(-1px)}
+.btn.g{background:transparent;color:var(--mute);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.btn svg.i{width:18px;height:18px}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(10,14,16,.62);display:flex;align-items:flex-end;justify-content:center;z-index:20;padding:16px max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+@media (min-width:560px){.modal{align-items:center}}
+.mb{background:var(--surface);border-radius:22px;max-width:500px;width:100%;max-height:88vh;overflow:auto;padding:24px;box-shadow:var(--shadow);animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(16px);opacity:0}}
+.mb .head{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.mb .head .tile{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--raise);color:var(--accent);flex:none}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.rules li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem}
+.rules li .ic{width:32px;height:32px;border-radius:9px;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;flex:none}
+.rules li .ic svg.i{width:17px;height:17px}
+.ref{display:flex;gap:12px;background:var(--raise);border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:14px;padding:12px 14px;margin:16px 0;font-size:.93rem}
+.ref svg.i{color:var(--accent);margin-top:2px}
+.chk{display:flex;gap:12px;align-items:flex-start;font-weight:600;font-size:.94rem;cursor:pointer}
+.chk input{margin-top:3px;width:20px;height:20px;accent-color:var(--accent);flex:none}
+.amt{font-variant-numeric:tabular-nums}
+/* done */
+.done{text-align:center;padding:10px 0}
+.badge{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--ok) 15%,transparent);color:var(--ok)}
+.badge svg.i{width:38px;height:38px;stroke-width:2.4}
+.badge path{stroke-dasharray:30;stroke-dashoffset:30;animation:draw .6s .15s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.next{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px;text-align:left}
+.next li{display:flex;gap:12px;align-items:center;background:var(--bg);border-radius:12px;padding:12px 14px;font-size:.94rem}
+.next li svg.i{color:var(--teal)}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.top a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font:800 1rem var(--display);letter-spacing:.06em}.top img{width:34px;height:34px}.top .bk{font:600 .88rem var(--body);letter-spacing:0;color:var(--mute)}
+.wabtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:16px;text-decoration:none;background:#1f9d55;color:#fff;font-weight:700;border-radius:12px;padding:14px}
+.av img{object-position:center 30%}
+.demo{display:inline-block;font-size:.8rem;color:var(--mute);border:1px dashed var(--line);border-radius:99px;padding:3px 12px;margin-top:6px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.badge path{stroke-dashoffset:0}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+<symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 7 9-7"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M3.5 20.5 5 16a8.5 8.5 0 1 1 3 3z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.4-1.9-1.3-2.3-2.3l1-1-1-2L9 9.5z"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="sunset" viewBox="0 0 24 24"><path d="M17 18a5 5 0 0 0-10 0M12 2v7M4.2 10.2l1.4 1.4M1 18h2M21 18h2M18.4 11.6l1.4-1.4M23 22H1M8 6l4-4 4 4"/></symbol>
+<symbol id="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+<symbol id="mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></symbol>
+<symbol id="spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6.5"/></symbol>
+<symbol id="clip" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="18" rx="2.5"/><path d="M9 3.5h6v3H9zM8.5 11h7M8.5 15h5"/></symbol>
+<symbol id="play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+<symbol id="pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+<symbol id="right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+<symbol id="edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+<symbol id="seat" viewBox="0 0 24 24"><path d="M6 10V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5M4 10h16v5H4zM6 15v6M18 15v6"/></symbol>
+<symbol id="users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-5.5 6.5-5.5s6.5 2 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M17.5 14.5c2.4.3 4 1.9 4 4.5"/></symbol>
+<symbol id="book" viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5zM4 21.5A2.5 2.5 0 0 1 6.5 19H20v3H6.5"/></symbol>
+<symbol id="chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 10a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 16.5v.01"/></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 8.5-3 8.5h18S18 16 18 9zM10 21a2.2 2.2 0 0 0 4 0"/></symbol>
+<symbol id="video" viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="m15.5 10.5 6-3.5v10l-6-3.5"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="11" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.8 8 10 4.6-1.2 8-5 8-10v-6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+<symbol id="rupee" viewBox="0 0 24 24"><path d="M6 4h12M6 9h12M14.5 4c3.5 0 3.5 10-3 10H7l8 7"/></symbol>
+<symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+<symbol id="yt" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/></symbol>
+<symbol id="li" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10v7M7.5 7v.01M11.5 17v-4a2.5 2.5 0 0 1 5 0v4M11.5 10v7"/></symbol>
+<symbol id="link" viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></symbol>
+</defs>
+</svg>
+
+<div class="wrap">
+  <div class="top"><a href="/"><img src="data:image/png;base64,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" alt="">COWARTU</a><a class="bk" href="/live-masterclass/">← Back to Master Class</a></div>
+  <span class="eyebrow"><span class="dot"></span>First batch · 10 seats per batch</span>
+  <h1>Book your seat in the <span>Live Masterclass</span></h1>
+  <p class="lede">45 days of live voice acting and dubbing training, 2.5 hours a day, in small batches of 10. Fill this short form to reserve your seat.</p>
+
+  <div class="fee">
+    <div><span class="ic"><svg class="i"><use href="#seat"/></svg></span><span><b class="amt">₹399</b><small>Pay now to book your seat (includes ₹99 PDF course)</small></span></div>
+    <div><span class="ic"><svg class="i"><use href="#rupee"/></svg></span><span><b class="amt">₹3,999</b><small>Total course fee. Remaining amount is shared before enrolment</small></span></div>
+  </div>
+
+  <div class="rail"><ol class="steps" id="steps"></ol></div>
+  <div class="card" id="box"></div>
+</div>
+<div id="modal"></div>
+
+<script>
+/* ===== CONFIG: add your payment link and teachers here ===== */
+var CONFIG={
+  SUPA:"https://bpdewnmfalfodcemzoff.supabase.co",
+  KEY:"sb_publishable_53Z7OUBd_lj7Gr4j92uqMA_N30JjxVE",
+  WA:"919279044047",
+  PAYMENT_URL:"",   /* Add your ₹399 payment link here when ready. Empty = student is sent to WhatsApp for payment */
+  TEACHERS:[
+    {name:"Ishwar Tudu",role:"Founder · Voice Actor & Dubbing Trainer",about:"Founder of Cowartu, working voice actor and dubbing artist",photo:"/media/ishwar.jpg",voice:"/media/ishwar-voice.mp3",social:[]}
+  ]
+};
+var SLOTS=[["Morning Batch","10:00 AM – 12:30 PM","sun"],["Afternoon Batch","2:30 PM – 5:00 PM","sunset"],["Night Batch","8:30 PM – 11:00 PM","moon"]];
+var STEPS=[["Details","user"],["Timing","cal"],["Teacher","mic"],["Review","clip"]];
+var D={name:"",dob:"",place:"",prof:"",email:"",wa:"",slot:-1,teacher:-1};
+var step=0,box=document.getElementById("box"),player=null,playing=-1;
+
+function ic(n){return '<svg class="i" aria-hidden="true"><use href="#'+n+'"/></svg>';}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function okUrl(u){return /^(https?:\/\/|\/?media\/)/i.test(u||"");}
+function socIcon(l){l=(l||"").toLowerCase();return l.indexOf("insta")>-1?"ig":l.indexOf("you")>-1?"yt":l.indexOf("link")>-1?"li":"link";}
+function socials(t){
+  var s=(t.social||[]).filter(function(x){return okUrl(x.url);});
+  return s.map(function(x){return '<a class="sico" href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(x.label)+'">'+ic(socIcon(x.label))+'</a>';}).join("");
+}
+function rail(){
+  document.getElementById("steps").innerHTML=STEPS.map(function(s,k){
+    return '<li class="'+(k<step?'done':k==step?'now':'')+'"'+(k==step?' aria-current="step"':'')+'><span>'+ic(k<step?'check':s[1])+'<b>'+s[0]+'</b></span></li>';
+  }).join("");
+}
+function field(id,lbl,type,icon,ph,full){
+  return '<div class="fld'+(full?' full':'')+'"><label for="'+id+'">'+lbl+'</label><div class="inp">'+ic(icon)
+  +'<input id="'+id+'" type="'+type+'" value="'+esc(D[id])+'" placeholder="'+(ph||"")+'" autocomplete="'+({name:"name",email:"email",wa:"tel",dob:"bday"}[id]||"off")+'"></div><div class="er" id="e_'+id+'" role="alert"></div></div>';
+}
+function nav(back,label,disabled){
+  return '<div class="nav">'+(back?'<button class="btn g" id="bk">'+ic('left')+'Back</button>':'<span></span>')
+  +'<button class="btn p" id="nx"'+(disabled?' disabled':'')+'>'+label+ic('right')+'</button></div>';
+}
+function render(){
+  rail();var h="";
+  if(step==0){
+    h='<h2>Tell us about yourself</h2><p class="hint">All fields are required. We use your email and WhatsApp to tell you when your batch is ready.</p><div class="fields">'
+    +field("name","Full name","text","user","Your full name",true)
+    +field("dob","Date of birth","date","cal")
+    +field("place","Place","text","pin","City, town or village")
+    +field("prof","Profession","text","brief","Student, job, business…",true)
+    +field("email","Email ID","email","mail","you@example.com")
+    +field("wa","WhatsApp number","tel","i-wa","10-digit number")
+    +'</div>'+nav(false,"Continue");
+  }else if(step==1){
+    h='<h2>Choose your batch timing</h2><p class="hint">Each batch has 10 students. The first 10 students in a timing form that slot\'s first batch, the next 10 form the second, and so on. Once your batch is fixed, the timing cannot be changed directly.</p><div class="opts" role="radiogroup" aria-label="Batch timing">';
+    SLOTS.forEach(function(s,k){
+      h+='<button class="opt'+(D.slot==k?' on':'')+'" data-s="'+k+'" role="radio" aria-checked="'+(D.slot==k)+'"><span class="tile">'+ic(s[2])+'</span><span class="txt"><b>'+s[0]+'</b><small>'+s[1]+' · 2.5 hours</small></span><span class="radio"></span></button>';
+    });
+    h+='</div>'+nav(true,"Continue",D.slot<0);
+  }else if(step==2){
+    h='<h2>Choose your teacher <span style="font-weight:500;color:var(--mute);font-size:.9rem">(optional)</span></h2><p class="hint">Listen to each voice sample and pick the teacher you connect with. If a batch does not fill up, management may change the teacher.</p><div class="opts" role="radiogroup" aria-label="Teacher">';
+    CONFIG.TEACHERS.forEach(function(t,k){
+      var av=okUrl(t.photo)?'<img src="'+esc(t.photo)+'" alt="">':esc((t.name||"?").charAt(0));
+      var voice=okUrl(t.voice)?'<button type="button" class="play" data-v="'+k+'">'+ic(playing==k?'pause':'play')+(playing==k?'Pause':'Voice sample')+'</button>':'<button type="button" class="play" disabled>'+ic('mic')+'Sample coming soon</button>';
+      h+='<div class="opt'+(D.teacher==k?' on':'')+'" data-t="'+k+'" role="radio" tabindex="0" aria-checked="'+(D.teacher==k)+'"><span class="av">'+av+'</span><span class="txt"><b>'+esc(t.name)+'</b><small>'+esc(t.role||"Voice Acting Trainer")+'</small>'
+      +(t.about?'<small style="margin-top:2px">'+esc(t.about)+'</small>':'')+'<span class="tmeta">'+voice+socials(t)+'</span></span><span class="radio"></span></div>';
+    });
+    h+='<button class="opt'+(D.teacher==-2?' on':'')+'" data-t="-2" role="radio" aria-checked="'+(D.teacher==-2)+'"><span class="tile">'+ic('spark')+'</span><span class="txt"><b>Let Cowartu choose</b><small>Management will assign the best fit for your batch</small></span><span class="radio"></span></button>';
+    h+='</div>'+nav(true,"Continue",D.teacher==-1);
+  }else if(step==3){
+    var tn=D.teacher>=0?CONFIG.TEACHERS[D.teacher].name:"Assigned by Cowartu";
+    function row(a,b){return '<dt>'+a+'</dt><dd>'+esc(b)+'</dd>';}
+    function sec(title,go,rows){return '<section><h3>'+title+'<button type="button" data-go="'+go+'">'+ic('edit')+'Edit</button></h3><dl>'+rows+'</dl></section>';}
+    h='<h2>Review your details</h2><p class="hint">Check everything once before booking your seat.</p><div class="rev">'
+    +sec("Your details",0,row("Name",D.name)+row("Date of birth",fmtDate(D.dob))+row("Place",D.place)+row("Profession",D.prof)+row("Email",D.email)+row("WhatsApp",D.wa))
+    +sec("Batch",1,row("Timing",SLOTS[D.slot][0]+", "+SLOTS[D.slot][1])+row("Teacher",tn))
+    +'</div>'+nav(true,"Book my seat");
+  }
+  box.innerHTML=h;wire();
+}
+function fmtDate(v){if(!v)return "";var p=v.split("-");var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return p.length==3?(+p[2])+" "+m[+p[1]-1]+" "+p[0]:v;}
+function go(n){stopAudio();step=n;render();window.scrollTo({top:0,behavior:"smooth"});}
+function wire(){
+  var bk=document.getElementById("bk"),nx=document.getElementById("nx");
+  if(bk)bk.onclick=function(){go(step-1);};
+  box.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){go(+b.dataset.go);};});
+  box.querySelectorAll("[data-s]").forEach(function(b){b.onclick=function(){D.slot=+b.dataset.s;render();};});
+  box.querySelectorAll("[data-t]").forEach(function(b){
+    function pick(e){if(e.target.closest("a,.play"))return;D.teacher=+b.dataset.t;render();}
+    b.onclick=pick;b.onkeydown=function(e){if(e.key=="Enter"||e.key==" "){e.preventDefault();pick(e);}};
+  });
+  box.querySelectorAll(".play[data-v]").forEach(function(b){b.onclick=function(e){e.stopPropagation();toggleAudio(+b.dataset.v);};});
+  box.querySelectorAll("input").forEach(function(i){i.oninput=function(){D[i.id]=i.value;};});
+  if(nx)nx.onclick=function(){
+    if(step==0&&!check())return;
+    if(step==3)return popup();
+    go(step+1);
+  };
+}
+function toggleAudio(k){
+  if(playing==k){stopAudio();render();return;}
+  stopAudio();
+  try{player=new Audio(CONFIG.TEACHERS[k].voice);playing=k;player.onended=function(){playing=-1;render();};
+      player.play().catch(function(){playing=-1;render();});}catch(e){playing=-1;}
+  render();
+}
+function stopAudio(){if(player){try{player.pause();}catch(e){}player=null;}playing=-1;}
+function check(){
+  var ok=true,first=null,v={};
+  ["name","dob","place","prof","email","wa"].forEach(function(k){var el=document.getElementById(k);v[k]=el.value.trim();D[k]=v[k];el.removeAttribute("aria-invalid");document.getElementById("e_"+k).textContent="";});
+  function bad(k,m){document.getElementById("e_"+k).textContent=m;document.getElementById(k).setAttribute("aria-invalid","true");if(!first)first=k;ok=false;}
+  if(v.name.length<3)bad("name","Enter your full name (at least 3 letters)");
+  if(!v.dob)bad("dob","Select your date of birth");
+  if(!v.place)bad("place","Enter your city, town or village");
+  if(!v.prof)bad("prof","Enter your profession, for example Student");
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email))bad("email","Enter an email like name@gmail.com");
+  if(!/^(\+?91)?[6-9]\d{9}$/.test(v.wa.replace(/[\s-]/g,"")))bad("wa","Enter a 10-digit number starting with 6, 7, 8 or 9");
+  if(first)document.getElementById(first).focus();
+  return ok;
+}
+function popup(){
+  var R=[
+    ["users","Your batch starts once <b>10 students</b> fill your chosen timing."],
+    ["seat","Book your seat now for <b class=\"amt\">₹399</b>: <b>₹99</b> for the PDF course and <b>₹300</b> towards your Live Masterclass fee of <b class=\"amt\">₹3,999</b>."],
+    ["book","After payment is verified, you get the <b>DOC B1 PDF course</b> (Hindi and English)."],
+    ["chat","While you wait, your teacher <b>solves your doubts every Sunday</b>."],
+    ["bell","When your batch is ready, we tell you on <b>email and WhatsApp</b>."],
+    ["video","The batch begins with a <b>1-day demo class</b>. The remaining fee and its schedule are shared with you <b>before enrolment</b>."],
+    ["lock","Once your batch is fixed, the <b>timing cannot be changed</b> directly. Email <b>support@cowartu.com</b> to request a change."]
+  ];
+  var m=document.getElementById("modal");
+  m.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="mb">'
+  +'<div class="head"><span class="tile">'+ic('clip')+'</span><div><h2 id="mt" style="margin:0">Before you pay</h2><span style="color:var(--mute);font-size:.9rem">How the waiting period works</span></div></div>'
+  +'<ul class="rules">'+R.map(function(r){return '<li><span class="ic">'+ic(r[0])+'</span><span>'+r[1]+'</span></li>';}).join("")+'</ul>'
+  +'<div class="ref">'+ic('shield')+'<span><b>Refund policy:</b> if you cancel before the first live class, or the batch is cancelled, <span class="amt">₹99</span> is kept for the PDF course and you get <b class="amt">₹300</b> back. <a href="/refund-policy/" target="_blank" style="color:var(--accent)">Read the full policy</a>.</span></div>'
+  +'<label class="chk" for="agree"><input type="checkbox" id="agree"> I agree to all of the above and want to book my seat for ₹399.</label>'
+  +'<div class="nav"><button class="btn g" id="cx">'+ic('left')+'Go back</button><button class="btn p" id="pay" disabled>'+ic('lock')+'Book seat · ₹399</button></div></div></div>';
+  var a=document.getElementById("agree"),p=document.getElementById("pay");
+  a.onchange=function(){p.disabled=!a.checked;};
+  function close(){m.innerHTML="";document.removeEventListener("keydown",esc_);}
+  function esc_(e){if(e.key=="Escape")close();}
+  document.addEventListener("keydown",esc_);
+  document.getElementById("cx").onclick=close;
+  m.querySelector(".modal").onclick=function(e){if(e.target===this)close();};
+  a.focus();
+  p.onclick=function(){p.disabled=true;p.innerHTML="Saving…";save().then(function(ok){close();if(ok&&/^https?:/.test(CONFIG.PAYMENT_URL)){window.location.href=CONFIG.PAYMENT_URL;return;}done(ok);});};
+}
+function tname(){return D.teacher>=0?CONFIG.TEACHERS[D.teacher].name:"Cowartu will assign";}
+function save(){
+  if(!CONFIG.SUPA)return Promise.resolve(false);
+  var ctl=window.AbortController?new AbortController():null,t=setTimeout(function(){if(ctl)ctl.abort();},12000);
+  return fetch(CONFIG.SUPA+"/rest/v1/rpc/submit_admission",{method:"POST",signal:ctl?ctl.signal:undefined,headers:{apikey:CONFIG.KEY,"Content-Type":"application/json"},
+    body:JSON.stringify({p_name:D.name,p_dob:D.dob||null,p_place:D.place,p_prof:D.prof,p_email:D.email,p_wa:D.wa.replace(/[\s-]/g,""),p_slot:SLOTS[D.slot][0].split(" ")[0],p_teacher:tname()})})
+  .then(function(r){clearTimeout(t);return r.ok;}).catch(function(){clearTimeout(t);return false;});
+}
+function waLink(){return "https://api.whatsapp.com/send?phone="+CONFIG.WA+"&text="+encodeURIComponent("Hi Cowartu, I want to book my Live Masterclass seat (₹399).\nName: "+D.name+"\nWhatsApp: "+D.wa+"\nEmail: "+D.email+"\nTiming: "+SLOTS[D.slot][0]+"\nTeacher: "+tname()+"\nPlease share the payment details.");}
+function done(ok){
+  document.getElementById("steps").innerHTML="";
+  box.innerHTML='<div class="done"><div class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg></div>'
+  +'<h2>'+(ok?'Your seat request is saved':'One last step')+'</h2><p class="hint" style="margin:0"><b>'+esc(D.name)+'</b>, '+(ok?'your request for the <b>'+SLOTS[D.slot][0]+'</b> ('+SLOTS[D.slot][1]+') has reached Cowartu.':'we could not save your form automatically. Tap the button below to send your details to us on WhatsApp.')+'</p>'
+  +'<a class="wabtn" href="'+waLink()+'">'+ic('i-wa')+(ok?'Pay ₹399 via WhatsApp':'Send my details on WhatsApp')+'</a>'
+  +'<ul class="next"><li>'+ic('rupee')+'<span>We share the ₹399 payment details on WhatsApp. Your seat is confirmed after the payment is verified.</span></li>'
+  +'<li>'+ic('book')+'<span>You get the DOC B1 PDF course once your payment is verified.</span></li>'
+  +'<li>'+ic('chat')+'<span>Join the free doubt session every Sunday.</span></li>'
+  +'<li>'+ic('bell')+'<span>We will message <b>'+esc(D.email)+'</b> and WhatsApp <b>'+esc(D.wa)+'</b> when your batch is ready.</span></li></ul></div>';
+}
+render();
+</script>
+
+</body></html>

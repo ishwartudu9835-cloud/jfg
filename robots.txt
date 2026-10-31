@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin-voice-actors.html
+Disallow: /admission.html
+
+Sitemap: https://cowartu.com/sitemap.xml

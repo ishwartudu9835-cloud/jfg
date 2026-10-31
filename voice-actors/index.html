@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hire Voice Actors & Dubbing Artists in India | Cowartu</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/media/apple-touch-icon.png"><meta name="theme-color" content="#0B1B3A"><link rel="canonical" href="https://cowartu.com/voice-actors/"><meta property="og:title" content="Hire Voice Actors & Dubbing Artists | Cowartu"><meta property="og:image" content="https://cowartu.com/media/og-image.jpg">
+<meta name="description" content="Find and hire Hindi, English and regional Indian voice actors and dubbing artists. Listen to samples, filter by language, voice type and genre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1B3A; --navy2:#13284F; --ink:#16213A; --muted:#5D6880; --line:#E3E7EF; --bg:#F6F7FB;
+  --gold:#D4A537; --gold2:#F3D27A; --goldDeep:#9A7212;
+  --green:#14A06B; --green2:#7FE0B8; --greenDeep:#0B6B47;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.mont{font-family:Montserrat,sans-serif}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+
+/* hero */
+.hero{background:radial-gradient(120% 140% at 85% 0%,#1F3B75 0%,var(--navy) 55%);color:#fff;padding:46px 0 72px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);font-weight:600}
+.eyebrow:before{content:"";width:22px;height:2px;background:var(--gold)}
+.hero h1{font-size:clamp(28px,6vw,46px);line-height:1.12;margin:12px 0 10px;font-weight:800}
+.hero h1 span{color:var(--gold2)}
+.hero p{color:#C9D3EA;max-width:620px;font-size:15px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.legend span{font-size:12px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+
+/* search & filters */
+.panel{background:#fff;border-radius:var(--r);box-shadow:0 18px 40px -20px rgba(11,27,58,.35);padding:16px;margin-top:-46px;position:relative}
+.searchrow{display:flex;gap:10px}
+.search{flex:1;min-width:0;display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;background:#fff}
+.search:focus-within{border-color:var(--navy2)}
+.search input{border:0;outline:0;flex:1;font:inherit;padding:13px 0;min-width:0;background:transparent}
+.fbtn{display:none;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:0 14px;font-weight:600;color:var(--navy)}
+.tierchips{display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-size:13px;font-weight:500;color:var(--muted)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.gold.on{background:linear-gradient(135deg,var(--goldDeep),var(--gold));border-color:var(--gold)}
+.chip.green.on{background:linear-gradient(135deg,var(--greenDeep),var(--green));border-color:var(--green)}
+.filters{display:grid;grid-template-columns:repeat(5,1fr) auto;gap:10px;margin-top:10px}
+.filters select{width:100%;font:inherit;font-size:14px;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235D6880' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);white-space:nowrap;padding:0 4px}
+.check input{width:18px;height:18px;accent-color:var(--navy)}
+.meta{display:flex;justify-content:space-between;align-items:center;margin:22px 0 14px;font-size:14px;color:var(--muted)}
+.clear{background:none;border:0;color:var(--navy2);font-weight:600;text-decoration:underline}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;padding-bottom:40px}
+.card{position:relative;background:#fff;border-radius:var(--r);border:1.5px solid var(--line);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 36px -22px rgba(11,27,58,.45)}
+.card .top{padding:20px 18px 14px;display:flex;gap:14px;align-items:center}
+.avatar{width:72px;height:72px;border-radius:50%;flex:none;object-fit:cover;display:grid;place-items:center;font-family:Montserrat;font-weight:700;font-size:22px;color:#fff;background:linear-gradient(135deg,#8B95AB,#5D6880);border:3px solid #fff;box-shadow:0 0 0 2px var(--line)}
+.card h3{font-size:17px;line-height:1.25}
+.headline{font-size:13px;color:var(--muted);margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:#EEF0F5;color:#4A5570;margin-bottom:6px}
+.cert{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--navy2);background:#E9EEFA;padding:4px 9px;border-radius:99px;margin-left:4px}
+.card .body{padding:0 18px 16px;flex:1}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.pill{font-size:12px;padding:4px 10px;border-radius:8px;background:var(--bg);color:#3D4863}
+.card .foot{display:flex;gap:8px;padding:14px 18px;border-top:1px solid var(--line);align-items:center}
+.play{width:42px;height:42px;border-radius:50%;border:0;display:grid;place-items:center;background:var(--navy);color:#fff;flex:none}
+.play svg{width:16px;height:16px}
+.foot .lbl{font-size:13px;color:var(--muted);flex:1;line-height:1.3}
+.view{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--navy)}
+
+/* tier: green */
+.card.green{border-color:transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--green2),var(--green),var(--greenDeep)) border-box;border-width:2px}
+.card.green .tag{background:linear-gradient(135deg,var(--greenDeep),var(--green));color:#fff}
+.card.green .avatar{box-shadow:0 0 0 3px var(--green)}
+.card.green .play{background:linear-gradient(135deg,var(--greenDeep),var(--green))}
+.card.green .top{background:linear-gradient(180deg,#EAF8F1,#fff)}
+/* tier: gold */
+.card.gold{border-color:transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--gold2),var(--gold),var(--goldDeep),var(--gold2)) border-box;border-width:2.5px;box-shadow:0 14px 34px -20px rgba(154,114,18,.7)}
+.card.gold .top{background:linear-gradient(160deg,#0E2147,#1E3A73);color:#fff}
+.card.gold .headline{color:#D5DDF0}
+.card.gold .tag{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#3A2A00}
+.card.gold .cert{background:rgba(255,255,255,.14);color:#fff}
+.card.gold .avatar{box-shadow:0 0 0 3px var(--gold);border-color:#0E2147}
+.card.gold .play{background:linear-gradient(135deg,var(--goldDeep),var(--gold));color:#2A1E00}
+.card.gold:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,236,170,.35) 50%,transparent 65%);transform:translateX(-120%);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@media (prefers-reduced-motion:reduce){.card.gold:after{animation:none}}
+.feat{position:absolute;top:12px;right:12px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#2A1E00;padding:3px 8px;border-radius:6px;z-index:1}
+
+.empty{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted);background:#fff;border-radius:var(--r);border:1.5px dashed var(--line)}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--navy),#1F3B75);color:#fff;border-radius:22px;padding:30px 24px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:10px 0 50px}
+.cta h2{font-size:22px}
+.cta p{color:#C9D3EA;font-size:14px;margin-top:6px;max-width:560px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 22px;font-weight:600;text-decoration:none;font-size:15px}
+.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#2A1E00}
+.btn.navy{background:var(--navy);color:#fff}
+.btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--navy)}
+
+/* profile sheet */
+.overlay{position:fixed;inset:0;background:rgba(8,16,36,.6);display:none;z-index:50;align-items:flex-end;justify-content:center}
+.overlay.open{display:flex}
+.sheet{background:#fff;width:100%;max-width:720px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;animation:up .25s ease}
+@media(min-width:760px){.overlay{align-items:center}.sheet{border-radius:22px}}
+@keyframes up{from{transform:translateY(30px);opacity:.4}}
+.phead{padding:28px 22px 22px;position:relative;text-align:center;background:linear-gradient(180deg,#F1F3F8,#fff)}
+.phead .avatar{width:110px;height:110px;font-size:34px;margin:0 auto 12px}
+.phead h2{font-size:24px}
+.close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.08);font-size:20px;color:inherit}
+.pbody{padding:6px 22px 26px}
+.sec{margin-top:20px}
+.sec h4{font-family:Montserrat;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.spec{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:14px}
+.spec b{display:block;font-size:11px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.sample{display:flex;align-items:center;gap:12px;padding:10px;border:1.5px solid var(--line);border-radius:14px;margin-bottom:8px}
+.sample .play{width:40px;height:40px}
+.sample .t{flex:1;font-size:14px;font-weight:500}
+.bar{height:4px;background:var(--line);border-radius:4px;margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--navy2)}
+.pactions{display:flex;gap:10px;margin-top:22px}
+.pactions .btn{flex:1}
+.sheet.green .phead{background:linear-gradient(180deg,#DDF5EA,#fff)}
+.sheet.green .phead .avatar{box-shadow:0 0 0 4px var(--green)}
+.sheet.green .tag{background:linear-gradient(135deg,var(--greenDeep),var(--green));color:#fff}
+.sheet.green .play,.sheet.green .bar i{background:var(--green)}
+.sheet.gold .phead{background:linear-gradient(160deg,#0E2147,#1E3A73);color:#fff}
+.sheet.gold .phead .headline{color:#D5DDF0}
+.sheet.gold .phead .avatar{box-shadow:0 0 0 4px var(--gold);border-color:#0E2147}
+.sheet.gold .close{background:rgba(255,255,255,.15)}
+.sheet.gold .tag{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#3A2A00}
+.sheet.gold .cert{background:rgba(255,255,255,.14);color:#fff}
+.sheet.gold .play{background:linear-gradient(135deg,var(--goldDeep),var(--gold));color:#2A1E00}
+.sheet.gold .bar i{background:var(--gold)}
+.sheet.gold .sample{border-color:#EBD9A6}
+
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;transition:transform .25s;z-index:80;max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.demo{background:#FFF7DF;color:#6B5200;font-size:13px;text-align:center;padding:8px 12px}
+
+@media (max-width:900px){
+  .filters{grid-template-columns:1fr 1fr}
+  .fbtn{display:inline-flex;align-items:center}
+  .filters.collapsed{display:none}
+}
+@media (max-width:520px){
+  .grid{grid-template-columns:1fr}
+  .specs{grid-template-columns:1fr 1fr}
+}
+
+.sitebar{background:#0B1B3A;color:#fff;position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,.08)}
+.sitebar .in{max-width:1180px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px}
+.sitebar .lg{display:flex;align-items:center;gap:9px;text-decoration:none;color:#fff;font:800 16px Montserrat,sans-serif;letter-spacing:.08em;flex:none}
+.sitebar .lg img{width:34px;height:34px;border-radius:9px;background:#fff;padding:2px}
+.sitebar nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.sitebar nav::-webkit-scrollbar{display:none}
+.sitebar nav a{flex:none;color:#C9D3EA;text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-radius:99px}
+.sitebar nav a.on{background:rgba(255,255,255,.12);color:#fff}
+.sitefoot{background:#081430;color:#9FB0D0;font-size:13px;padding:26px 18px;text-align:center}
+.sitefoot a{color:#C9D3EA;margin:0 8px;text-decoration:none}
+@media(max-width:520px){.sitebar .lg span{display:none}.sitebar nav a[href="/"],.sitebar nav a[href="/contact/"]{display:none}.sitebar nav a{padding:7px 9px}}
+</style>
+</head>
+<body>
+<div class="demo" id="demoBar" hidden>Preview mode: showing sample voice actors. Real profiles load once the site is connected to the database.</div>
+
+<header class="sitebar"><div class="in"><a class="lg" href="/"><img src="/media/logo-128.png" alt="Cowartu logo" width="34" height="34"><span>COWARTU</span></a><nav><a href="/">Home</a><a href="/courses/">Courses</a><a href="/voice-actors/" class="on">Voice Actors</a><a href="/list-yourself/">Get listed</a><a href="/contact/">Contact</a></nav></div></header>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Cowartu Voice Directory</div>
+    <h1>Find the <span>perfect voice</span> for your project.</h1>
+    <p>Browse Cowartu-trained and independent voice actors across Indian and global languages. Listen to real samples, filter by language and voice type, and hire in minutes.</p>
+    <div class="legend">
+      <span>🥇 Elite Voice: our best</span><span>🟢 Pro Voice: highly skilled</span><span>⚪ Rising Voice: new talent</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel" aria-label="Search voice actors">
+    <div class="searchrow">
+      <label class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5D6880" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search name, language, voice type…" autocomplete="off">
+      </label>
+      <button class="fbtn" id="toggleFilters" aria-expanded="false">Filters</button>
+    </div>
+    <div class="tierchips" id="tierChips">
+      <button class="chip on" data-tier="">All</button>
+      <button class="chip gold" data-tier="gold">Elite (Gold)</button>
+      <button class="chip green" data-tier="green">Pro (Green)</button>
+      <button class="chip" data-tier="normal">Rising</button>
+    </div>
+    <div class="filters collapsed" id="filters">
+      <select id="fLang" aria-label="Language"><option value="">All languages</option></select>
+      <select id="fType" aria-label="Voice type"><option value="">All voice types</option></select>
+      <select id="fGenre" aria-label="Genre"><option value="">All genres</option></select>
+      <select id="fGender" aria-label="Gender"><option value="">Any gender</option></select>
+      <select id="fAge" aria-label="Age range"><option value="">Any age</option></select>
+      <label class="check"><input type="checkbox" id="fCert"> Cowartu Certified</label>
+    </div>
+  </section>
+
+  <div class="meta"><span id="count">Loading voices…</span><button class="clear" id="clearAll" hidden>Clear filters</button></div>
+  <section class="grid" id="grid" aria-live="polite"></section>
+
+  <section class="cta">
+    <div>
+      <h2 class="mont">Are you a voice actor?</h2>
+      <p>Get listed in the Cowartu Voice Directory for a one-time fee of ₹149. Clients searching for your language and voice type will find you instantly.</p>
+    </div>
+    <a class="btn gold" href="/list-yourself/">List yourself →</a>
+  </section>
+</main>
+<footer class="sitefoot"><div><a href="/">Home</a><a href="/live-masterclass/">Live Masterclass</a><a href="/voice-actors/">Voice Actors</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy</a><a href="/terms-and-conditions/">Terms</a></div><p style="margin-top:10px">© 2026 Cowartu. All rights reserved by Cowartu.</p></footer>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+<audio id="player" preload="none"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.js"></script>
+<script src="/va-config.js"></script>
+<script>
+const {esc, initials, TIERS} = VA;
+let ALL = [], state = {q:'', tier:'', lang:'', type:'', genre:'', gender:'', age:'', cert:false};
+const $ = id => document.getElementById(id);
+const PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
+const PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+
+function fill(sel, arr){ arr.forEach(v => sel.insertAdjacentHTML('beforeend', `<option>${esc(v)}</option>`)); }
+fill($('fLang'), VA.LANGUAGES); fill($('fType'), VA.VOICE_TYPES); fill($('fGenre'), VA.GENRES);
+fill($('fGender'), VA.GENDERS); fill($('fAge'), VA.AGES);
+
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2600); }
+
+function avatar(a){
+  return a.photo_url ? `<img class="avatar" src="${esc(a.photo_url)}" alt="${esc(a.name)}" loading="lazy">`
+                     : `<div class="avatar" aria-hidden="true">${esc(initials(a.name))}</div>`;
+}
+function tag(a){
+  const t = TIERS[a.tier||'normal'];
+  return `<span class="tag">${a.tier==='gold'?'★ ':''}${t.label}</span>${a.is_certified?'<span class="cert">✓ Cowartu Certified</span>':''}`;
+}
+
+function matches(a){
+  const s = state;
+  if (s.tier && (a.tier||'normal') !== s.tier) return false;
+  if (s.lang && !(a.languages||[]).includes(s.lang)) return false;
+  if (s.type && !(a.voice_types||[]).includes(s.type)) return false;
+  if (s.genre && !(a.genres||[]).includes(s.genre)) return false;
+  if (s.gender && a.gender !== s.gender) return false;
+  if (s.age && a.age_range !== s.age) return false;
+  if (s.cert && !a.is_certified) return false;
+  if (s.q){
+    const hay = [a.name,a.headline,a.bio,a.city,a.gender,a.age_range,...(a.languages||[]),...(a.voice_types||[]),...(a.genres||[]),TIERS[a.tier||'normal'].label].join(' ').toLowerCase();
+    if (!s.q.toLowerCase().split(/\s+/).every(w => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+function render(){
+  const list = VA.sortActors(ALL.filter(matches));
+  const active = Object.entries(state).some(([k,v]) => v && k!=='q') || state.q;
+  $('clearAll').hidden = !active;
+  $('count').textContent = `${list.length} voice actor${list.length===1?'':'s'} found`;
+  $('grid').innerHTML = list.length ? list.map(a => {
+    const langs = (a.languages||[]).slice(0,3), more = (a.languages||[]).length-3;
+    const types = (a.voice_types||[]).slice(0,2);
+    const hasSample = (a.samples||[]).length > 0;
+    return `<article class="card ${esc(a.tier||'normal')}" data-id="${esc(a.id)}" tabindex="0">
+      ${a.is_featured?'<span class="feat">Featured</span>':''}
+      <div class="top">${avatar(a)}<div>${tag(a)}<h3>${esc(a.name)}</h3><div class="headline">${esc(a.headline||'')}</div></div></div>
+      <div class="body"><div class="pills">
+        ${langs.map(l=>`<span class="pill">🗣 ${esc(l)}</span>`).join('')}${more>0?`<span class="pill">+${more}</span>`:''}
+        ${types.map(t=>`<span class="pill">${esc(t)}</span>`).join('')}
+      </div></div>
+      <div class="foot">
+        <button class="play" data-play="${esc(a.id)}:0" aria-label="Play sample of ${esc(a.name)}" ${hasSample?'':'disabled style="opacity:.35"'}>${PLAY}</button>
+        <span class="lbl">${hasSample?esc(a.samples[0].title||'Voice sample'):'Sample coming soon'}</span>
+        <button class="view" data-view="${esc(a.id)}">View profile</button>
+      </div></article>`;
+  }).join('') : `<div class="empty"><b>No voice found for these filters.</b><br>Try another language or clear the filters.</div>`;
+  syncPlayButtons();
+}
+
+/* audio: one at a time */
+const player = $('player'); let playing = null;
+function playSample(key){
+  const [id, idx] = key.split(':'); const a = ALL.find(x => String(x.id) === id); const s = a && a.samples[+idx];
+  if (!s) return;
+  if (playing === key){ player.pause(); playing = null; syncPlayButtons(); return; }
+  if (!s.url){ toast('Sample audio will play here on the live site.'); return; }
+  player.src = s.url; playing = key;
+  player.play().catch(() => { playing = null; toast('Could not play this sample.'); syncPlayButtons(); });
+  syncPlayButtons();
+}
+player.addEventListener('ended', () => { playing = null; syncPlayButtons(); });
+player.addEventListener('timeupdate', () => {
+  document.querySelectorAll(`[data-bar="${playing}"]`).forEach(b => b.style.width = (player.currentTime/(player.duration||1)*100)+'%');
+});
+function syncPlayButtons(){
+  document.querySelectorAll('[data-play]').forEach(b => {
+    const on = b.dataset.play === playing; b.innerHTML = on ? PAUSE : PLAY;
+    b.setAttribute('aria-label', on ? 'Pause sample' : 'Play sample');
+  });
+}
+
+/* profile */
+function openProfile(id, push=true){
+  const a = ALL.find(x => String(x.id) === String(id)); if (!a) return;
+  const tier = a.tier||'normal';
+  const wa = VA.waUrl(`Hi Cowartu, I want to hire voice actor ${a.name} (${TIERS[tier].label}) for a project.`);
+  const spec = (k,v) => v && (Array.isArray(v)?v.length:true) ? `<div class="spec"><b>${k}</b>${esc(Array.isArray(v)?v.join(', '):v)}</div>` : '';
+  $('sheet').className = 'sheet ' + tier;
+  $('sheet').innerHTML = `
+    <div class="phead">
+      <button class="close" id="closeSheet" aria-label="Close">×</button>
+      ${avatar(a)}<div>${tag(a)}</div><h2 class="mont">${esc(a.name)}</h2>
+      <div class="headline" style="-webkit-line-clamp:unset">${esc(a.headline||'')}</div>
+    </div>
+    <div class="pbody">
+      ${a.bio?`<div class="sec"><h4>About</h4><p style="font-size:15px">${esc(a.bio)}</p></div>`:''}
+      <div class="sec"><h4>Voice samples</h4>
+        ${(a.samples||[]).length ? a.samples.map((s,i)=>`<div class="sample"><button class="play" data-play="${esc(a.id)}:${i}">${PLAY}</button>
+          <div class="t">${esc(s.title||'Sample '+(i+1))}<div class="bar"><i data-bar="${esc(a.id)}:${i}"></i></div></div></div>`).join('')
+          : '<p style="color:var(--muted);font-size:14px">Samples coming soon.</p>'}
+      </div>
+      <div class="sec"><h4>Specifications</h4><div class="specs">
+        ${spec('Languages',a.languages)}${spec('Voice type',a.voice_types)}${spec('Genres',a.genres)}
+        ${spec('Gender',a.gender)}${spec('Age range',a.age_range)}${spec('City',a.city)}
+      </div></div>
+      <div class="pactions">
+        <a class="btn ${tier==='gold'?'gold':'navy'}" href="${wa}">Hire this voice</a>
+        ${a.portfolio_url && /^https?:\/\//i.test(a.portfolio_url) ? `<a class="btn ghost" href="${esc(a.portfolio_url)}" target="_blank" rel="noopener">View portfolio ↗</a>` : ''}
+      </div>
+      <button class="btn ghost" id="shareBtn" style="width:100%;margin-top:10px">Copy profile link</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center">Hiring requests are handled by Cowartu on WhatsApp: +91 92790 44047</p>
+    </div>`;
+  $('overlay').classList.add('open'); document.body.style.overflow='hidden';
+  if (push && a.slug) history.replaceState(null,'','#'+a.slug);
+  syncPlayButtons();
+  $('closeSheet').onclick = closeProfile;
+  $('shareBtn').onclick = () => {
+    const url = location.href.split('#')[0] + '#' + (a.slug||'');
+    navigator.clipboard.writeText(url).then(()=>toast('Profile link copied'),()=>toast(url));
+  };
+}
+function closeProfile(){
+  $('overlay').classList.remove('open'); document.body.style.overflow='';
+  if (location.hash) history.replaceState(null,'',location.pathname + location.search);
+}
+$('overlay').addEventListener('click', e => { if (e.target.id==='overlay') closeProfile(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeProfile(); });
+
+/* events */
+document.addEventListener('click', e => {
+  const p = e.target.closest('[data-play]'); if (p){ e.stopPropagation(); playSample(p.dataset.play); return; }
+  const v = e.target.closest('[data-view]'); if (v){ openProfile(v.dataset.view); return; }
+  const c = e.target.closest('.card'); if (c) openProfile(c.dataset.id);
+});
+$('grid').addEventListener('keydown', e => { const c=e.target.closest('.card'); if (c && e.key==='Enter') openProfile(c.dataset.id); });
+let qT; $('q').addEventListener('input', e => { clearTimeout(qT); qT=setTimeout(()=>{state.q=e.target.value.trim(); render();},150); });
+$('tierChips').addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  document.querySelectorAll('#tierChips .chip').forEach(x => x.classList.toggle('on', x===b));
+  state.tier = b.dataset.tier; render();
+});
+[['fLang','lang'],['fType','type'],['fGenre','genre'],['fGender','gender'],['fAge','age']].forEach(([id,k]) =>
+  $(id).addEventListener('change', e => { state[k]=e.target.value; render(); }));
+$('fCert').addEventListener('change', e => { state.cert=e.target.checked; render(); });
+$('toggleFilters').onclick = () => { const f=$('filters'); f.classList.toggle('collapsed'); $('toggleFilters').setAttribute('aria-expanded', !f.classList.contains('collapsed')); };
+$('clearAll').onclick = () => {
+  state = {q:'',tier:'',lang:'',type:'',genre:'',gender:'',age:'',cert:false};
+  $('q').value=''; ['fLang','fType','fGenre','fGender','fAge'].forEach(id=>$(id).value=''); $('fCert').checked=false;
+  document.querySelectorAll('#tierChips .chip').forEach((x,i)=>x.classList.toggle('on', i===0)); render();
+};
+
+/* load */
+async function load(){
+  const db = VA.db();
+  try{
+    if (!db) throw new Error('not configured');
+    const { data, error } = await db.from('voice_actors_public').select('*');
+    if (error) throw error;
+    ALL = data || [];
+  }catch(err){
+    ALL = VA.DEMO; $('demoBar').hidden = false;
+  }
+  // open filter from URL language, e.g. voice-actors.html?lang=Bengali
+  const lang = new URLSearchParams(location.search).get('lang');
+  if (lang && VA.LANGUAGES.includes(lang)){ state.lang = lang; $('fLang').value = lang; }
+  render();
+  const slug = location.hash.slice(1);
+  if (slug){ const a = ALL.find(x => x.slug === slug); if (a) openProfile(a.id, false); }
+}
+window.addEventListener('hashchange', () => {
+  const a = ALL.find(x => x.slug === location.hash.slice(1)); if (a) openProfile(a.id,false); else closeProfile();
+});
+load();
+</script>
+</body>
+</html>
